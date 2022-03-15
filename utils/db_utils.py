@@ -24,7 +24,7 @@ class PgSession:
                 user=self.user,
                 password=self.password
             )
-            self.logger.info('Подключено в БД')
+            self.logger.info('Подключено к БД')
         except psycopg2.OperationalError as e:
             self.logger.error('Ошибка подключения к БД')
 
