@@ -6,6 +6,7 @@ from utils.logger import LogDispatcher
 
 class PgSession:
     """Класс для открытия сессии подключения к БД"""
+
     def __init__(self):
         self.host = DB_PARAMS['host']
         self.db = DB_PARAMS['db']
@@ -39,6 +40,7 @@ class PgSession:
 
 class CrudDatabase:
     """Класс для работы с БД"""
+
     def __init__(self):
         self.logger = LogDispatcher().log
 
@@ -61,7 +63,6 @@ class CrudDatabase:
             exp_devices = cursor.fetchall()
             self.logger.info(
                 f'{len(exp_devices)} устройств помечены неактивными по причине окончания срока действия')
-        return exp_devices
 
     def delete_null_instance_devices(self):
         """Метод для удаления устройств с истекшим сроком действия и пустым или равным Null instance_id"""
