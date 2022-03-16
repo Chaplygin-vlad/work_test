@@ -60,7 +60,7 @@ class CrudDatabase:
             RETURNING public.devices.id;                
             '''
             cursor.execute(query)
-            exp_devices = cursor.fetchall()
+            exp_devices = cursor.fetchall()  # id возвращаются для логов
             self.logger.info(
                 f'{len(exp_devices)} устройств помечены неактивными по причине окончания срока действия')
 
@@ -74,7 +74,7 @@ class CrudDatabase:
             RETURNING public.devices.id
             '''
             cursor.execute(query)
-            null_devices = cursor.fetchall()
+            null_devices = cursor.fetchall()  # id возвращаются для логов
             self.logger.info(f'Удалено {len(null_devices)} устройств с пустым instance_id')
 
     def filter_double_devices(self):
@@ -94,5 +94,5 @@ class CrudDatabase:
             RETURNING devices.id
             """
             cursor.execute(query)
-            double_devices = cursor.fetchall()
+            double_devices = cursor.fetchall()  # id возвращаются для логов
             self.logger.info(f'{len(double_devices)} дублирующих устройств помечены неактивными')

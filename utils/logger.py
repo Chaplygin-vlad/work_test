@@ -5,6 +5,7 @@ from logging.handlers import TimedRotatingFileHandler
 
 
 class LogDispatcher:
+    """Класс для конфигурирования logging"""
     def __init__(self, logger_name='MAIN'):
         self.logging_level = 'INFO'
         self.logging_to_console = True
@@ -17,16 +18,19 @@ class LogDispatcher:
         self.log = self.__get_logger(logger_name)
 
     def __get_console_handler(self):
+        """Конфигурирование вывода в консоль"""
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.setFormatter(self.log_format_stream)
         return console_handler
 
     def __get_file_handler(self):
+        """Конфигурирование вывода в файл"""
         file_handler = TimedRotatingFileHandler(self.log_file, when='midnight')
         file_handler.setFormatter(self.log_format_file)
         return file_handler
 
     def __get_logger(self, logger_name):
+        """Сборка логирования"""
         logger = logging.getLogger(logger_name)
         logger.setLevel(logging.getLevelName(self.logging_level))
         if len(logger.handlers) == 0:
